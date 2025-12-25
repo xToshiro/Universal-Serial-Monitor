@@ -1,0 +1,40 @@
+{
+    "log_folder": "C:\\Users\\jairo\\OneDrive\\Desktop\\Universal-Serial-Monitor",
+    "baud_rate": 115200,
+    "language": "en",
+    "theme": "light",
+    "filters": [
+        {
+            "keyword": "rst:",
+            "type": "boots"
+        },
+        {
+            "keyword": "boot:",
+            "type": "boots"
+        },
+        {
+            "keyword": "ets jul",
+            "type": "boots"
+        },
+        {
+            "keyword": "panic",
+            "type": "panics"
+        },
+        {
+            "keyword": "guru meditation",
+            "type": "panics"
+        },
+        {
+            "keyword": "error",
+            "type": "errors"
+        },
+        {
+            "keyword": "fail",
+            "type": "errors"
+        },
+        {
+            "keyword": "exception",
+            "type": "errors"
+        }
+    ]
+}
