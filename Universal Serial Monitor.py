@@ -883,15 +883,6 @@ class SerialMonitorApp:
         p.start()
  
  
- 
- 
- 
- 
- 
- 
- 
- 
-
 if __name__ == "__main__":
     # Necessário para PyInstaller no Windows com multiprocessing
     multiprocessing.freeze_support()
@@ -906,4 +897,3 @@ if __name__ == "__main__":
     app = SerialMonitorApp(root)
     root.mainloop()
  
-
