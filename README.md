@@ -92,7 +92,7 @@ python "Universal Serial Monitor.py"
 
 ## 🖼️ Screenshot / Captura de Tela
 
-![Interface do Monitor Serial](images/interface.png)
+![Interface do Monitor Serial](images/interfacedark.png)
 
 ---
 
