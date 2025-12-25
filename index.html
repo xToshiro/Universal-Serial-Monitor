@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Serial Monitor - Project Site</title>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --accent: #00aaff;
+            --bg: #f4f7f6;
+            --text: #333;
+            --code-bg: #1e1e1e;
+            --code-text: #d4d4d4;
+            --card-bg: #ffffff;
+            --btn-download: #28a745;
+            --btn-download-hover: #218838;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #004a99 0%, #002a5c 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 2.8rem; letter-spacing: -1px; }
+        header p { opacity: 0.9; margin-top: 0.5rem; font-size: 1.2rem; }
+        
+        .author-info { font-size: 0.9rem; margin-top: 1.5rem; color: #ddd; }
+        
+        /* GitHub Link Style */
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 15px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+        .github-link:hover { background: rgba(255,255,255,0.2); }
+        .github-link svg { fill: white; width: 20px; height: 20px; margin-right: 8px; }
+
+        .container {
+            max-width: 900px;
+            margin: -30px auto 2rem;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .lang-switch {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .lang-btn {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 10px 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .lang-btn:first-child { border-radius: 20px 0 0 20px; }
+        .lang-btn:last-child { border-radius: 0 20px 20px 0; border-left: none; }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h2 { border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; color: var(--primary); margin-top: 0; }
+        h3 { color: #555; margin-top: 1.5rem; }
+
+        code {
+            background: #eef;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Consolas', monospace;
+            color: #d63384;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            border-left: 5px solid var(--accent);
+        }
+
+        /* Download Button */
+        .btn-download {
+            display: inline-block;
+            background-color: var(--btn-download);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s, background 0.2s;
+        }
+        .btn-download:hover {
+            background-color: var(--btn-download-hover);
+            transform: translateY(-2px);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            padding: 1.2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            font-size: 0.9rem;
+            background: #e9ecef;
+            margin-top: 3rem;
+        }
+
+        .hidden { display: none; }
+        .tree-view { font-family: 'Consolas', monospace; line-height: 1.2; }
+        .tree-comment { color: #6a9955; font-style: italic; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Universal Serial Monitor</h1>
+    <p>Advanced Logging & Analysis Tool for Embedded Systems</p>
+    
+    <a href="https://github.com/xToshiro/Universal-Serial-Monitor" class="github-link" target="_blank">
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+        View Repository on GitHub
+    </a>
+
+    <div class="author-info">
+        Developed by <strong>Jairo Ivo Castro Brito</strong><br>
+        Department of Transport Engineering - UFC<br>
+        <small>License: GNU GPLv3</small>
+    </div>
+</header>
+
+<div class="container">
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('en')">English</button>
+        <button class="lang-btn" onclick="setLang('pt')">Português</button>
+    </div>
+
+    <!-- ENGLISH CONTENT -->
+    <div id="content-en">
+        <div class="card">
+            <h2>About the Project</h2>
+            <p>The <strong>Universal Serial Monitor</strong> is a robust, lightweight, and cross-platform desktop application designed to facilitate the monitoring, logging, and analysis of serial data from embedded devices (ESP32, Arduino, Raspberry Pi, STM32). It was developed to support air quality monitoring research at the Federal University of Ceará (UFC).</p>
+            <p>Unlike standard serial monitors, this tool provides real-time stability metrics, automatic error detection (panics, resets), and persistent logging without requiring a heavy IDE installation.</p>
+        </div>
+
+        <div class="card">
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item"><strong>📊 Real-time Metrics:</strong> Monitors connection stability (jitter), idle time, and average message intervals.</div>
+                <div class="feature-item"><strong>💾 Dual Logging:</strong> Saves raw serial output to <code>.txt</code> and structured metrics to <code>.csv</code> automatically.</div>
+                <div class="feature-item"><strong>📈 Plotting:</strong> Integrated graphing tool to visualize stability and error accumulation over time.</div>
+                <div class="feature-item"><strong>🔍 Smart Filters:</strong> Automatically detects and counts keywords like "Panic", "Error", "Boot", and allows custom filters.</div>
+                <div class="feature-item"><strong>📡 TX Capability:</strong> Send commands to your device via serial interface.</div>
+                <div class="feature-item"><strong>🎨 Customization:</strong> Supports Dark Mode and English/Portuguese languages.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Quick Start Tutorial</h2>
+            <h3>1. Installation</h3>
+            <p>No Python installation is required. Download the standalone executable directly:</p>
+            
+            <a href="https://github.com/xToshiro/Universal-Serial-Monitor/raw/refs/heads/main/Universal%20Serial%20Monitor.exe" class="btn-download">
+                ⬇ Download Latest Version (.exe)
+            </a>
+            <p><small style="color: #666;">Hosted on GitHub. Safe to run.</small></p>
+            
+            <h3>2. Basic Usage</h3>
+            <ul>
+                <li><strong>Connect:</strong> Plug your device (e.g., ESP32) into the USB port.</li>
+                <li><strong>Select Port:</strong> Click the refresh button <code>↻</code> inside the app and select the COM port.</li>
+                <li><strong>Baud Rate:</strong> Select or type your Baud Rate (default: 115200).</li>
+                <li><strong>Start:</strong> Click <strong>Start</strong>. The RX LED will blink green indicating data reception.</li>
+            </ul>
+
+            <h3>3. Analyzing Data</h3>
+            <ul>
+                <li><strong>Logs:</strong> Files are automatically saved in the configured folder with timestamps.</li>
+                <li><strong>Charts:</strong> Click <strong>📈 Charts</strong> to view the stability graph and error history generated from the CSV data.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Repository Structure</h2>
+            <p>File organization for developers:</p>
+            <pre class="tree-view">
+C:.
+│   .gitignore                  <span class="tree-comment"># Git configuration files</span>
+│   LICENSE                     <span class="tree-comment"># GNU GPLv3 License text</span>
+│   monitor_config.json         <span class="tree-comment"># Stores user preferences</span>
+│   README.html                 <span class="tree-comment"># This project site</span>
+│   requirements.txt            <span class="tree-comment"># Project Dependencies</span>
+│   Universal Serial Monitor.py <span class="tree-comment"># Source code (Python)</span>
+│   Universal Serial Monitor.spec <span class="tree-comment"># PyInstaller spec</span>
+│   Universal Serial Monitor.exe  <span class="tree-comment"># 🚀 EXECUTABLE FILE</span></pre>
+        </div>
+    </div>
+
+    <!-- PORTUGUESE CONTENT -->
+    <div id="content-pt" class="hidden">
+        <div class="card">
+            <h2>Sobre o Projeto</h2>
+            <p>O <strong>Monitor Serial Universal</strong> é uma aplicação desktop robusta, leve e multiplataforma, projetada para facilitar o monitoramento, registro e análise de dados seriais de dispositivos embarcados (ESP32, Arduino, Raspberry Pi, STM32). Foi desenvolvido para apoiar pesquisas de monitoramento da qualidade do ar na Universidade Federal do Ceará (UFC).</p>
+            <p>Diferente de monitores seriais padrão, esta ferramenta fornece métricas de estabilidade em tempo real, detecção automática de erros (panics, resets) e registro persistente em arquivos, sem a necessidade de instalar uma IDE pesada.</p>
+        </div>
+
+        <div class="card">
+            <h2>Funcionalidades Principais</h2>
+            <div class="feature-grid">
+                <div class="feature-item"><strong>📊 Métricas em Tempo Real:</strong> Monitora estabilidade da conexão (jitter), tempo ocioso e intervalo médio entre mensagens.</div>
+                <div class="feature-item"><strong>💾 Log Duplo:</strong> Salva saída serial bruta em <code>.txt</code> e métricas estruturadas em <code>.csv</code> automaticamente.</div>
+                <div class="feature-item"><strong>📈 Gráficos:</strong> Ferramenta de plotagem integrada para visualizar estabilidade e acúmulo de erros ao longo do tempo.</div>
+                <div class="feature-item"><strong>🔍 Filtros Inteligentes:</strong> Detecta e conta automaticamente palavras-chave como "Panic", "Error", "Boot", permitindo filtros personalizados.</div>
+                <div class="feature-item"><strong>📡 Capacidade TX:</strong> Envie comandos para seu dispositivo via interface serial.</div>
+                <div class="feature-item"><strong>🎨 Personalização:</strong> Suporte a Modo Escuro (Dark Mode) e idiomas Inglês/Português.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Tutorial Rápido</h2>
+            <h3>1. Instalação</h3>
+            <p>Nenhuma instalação de Python é necessária. Baixe o executável autônomo diretamente:</p>
+            
+            <a href="https://github.com/xToshiro/Universal-Serial-Monitor/raw/refs/heads/main/Universal%20Serial%20Monitor.exe" class="btn-download">
+                ⬇ Baixar Última Versão (.exe)
+            </a>
+            <p><small style="color: #666;">Hospedado no GitHub. Seguro para executar.</small></p>
+            
+            <h3>2. Uso Básico</h3>
+            <ul>
+                <li><strong>Conectar:</strong> Conecte seu dispositivo (ex: ESP32) na porta USB.</li>
+                <li><strong>Selecionar Porta:</strong> Clique no botão de atualizar <code>↻</code> dentro do app e selecione a porta COM.</li>
+                <li><strong>Baud Rate:</strong> Selecione ou digite a taxa de transmissão (padrão: 115200).</li>
+                <li><strong>Iniciar:</strong> Clique em <strong>Iniciar</strong>. O LED RX piscará em verde indicando recebimento de dados.</li>
+            </ul>
+
+            <h3>3. Analisando Dados</h3>
+            <ul>
+                <li><strong>Logs:</strong> Os arquivos são salvos automaticamente na pasta configurada com data e hora.</li>
+                <li><strong>Gráficos:</strong> Clique em <strong>📈 Gráficos</strong> para visualizar a estabilidade e histórico de erros gerados a partir do CSV.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Estrutura do Repositório</h2>
+            <p>Organização dos arquivos para desenvolvedores:</p>
+            <pre class="tree-view">
+C:.
+│   .gitignore                  <span class="tree-comment"># Arquivos de configuração do Git</span>
+│   LICENSE                     <span class="tree-comment"># Texto da Licença GNU GPLv3</span>
+│   monitor_config.json         <span class="tree-comment"># Preferências do usuário</span>
+│   README.html                 <span class="tree-comment"># Este site do projeto</span>
+│   requirements.txt            <span class="tree-comment"># Dependências do Projeto</span>
+│   Universal Serial Monitor.py <span class="tree-comment"># Código fonte (Python)</span>
+│   Universal Serial Monitor.spec <span class="tree-comment"># Especificação do PyInstaller</span>
+│   Universal Serial Monitor.exe  <span class="tree-comment"># 🚀 ARQUIVO EXECUTÁVEL</span></pre>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <a href="https://github.com/xToshiro/Universal-Serial-Monitor" style="color: #0056b3; text-decoration: none; font-weight: bold;">
+        Universal Serial Monitor Repository
+    </a><br><br>
+    &copy; 2025 Jairo Ivo Castro Brito.<br>
+    Open Source Software provided "as is" without warranty of any kind.
+</footer>
+
+<script>
+    function setLang(lang) {
+        const enContent = document.getElementById('content-en');
+        const ptContent = document.getElementById('content-pt');
+        const btns = document.querySelectorAll('.lang-btn');
+
+        if (lang === 'en') {
+            enContent.classList.remove('hidden');
+            ptContent.classList.add('hidden');
+            btns[0].classList.add('active');
+            btns[1].classList.remove('active');
+        } else {
+            enContent.classList.add('hidden');
+            ptContent.classList.remove('hidden');
+            btns[0].classList.remove('active');
+            btns[1].classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>
