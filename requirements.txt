@@ -1,0 +1,16 @@
+# --- Bibliotecas Externas (Instaladas via pip) ---
+pyserial
+matplotlib
+
+# --- Bibliotecas Padrão do Python (Já vêm instaladas) ---
+# Não é necessário instalar via pip, mas são usadas no projeto:
+# tkinter (Interface Gráfica) *Nota: No Linux, instale via: sudo apt-get install python3-tk
+# threading (Multitarefa)
+# multiprocessing (Processos paralelos para gráficos)
+# datetime (Data e Hora)
+# time (Temporização)
+# csv (Manipulação de arquivos CSV)
+# os (Sistema Operacional)
+# json (Manipulação de configurações)
+# sys (Sistema)
+```

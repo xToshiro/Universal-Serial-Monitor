@@ -58,15 +58,15 @@ Foi desenvolvido para apoiar pesquisas de monitoramento da qualidade do ar e emi
 ### Running the Executable / Executando
 No Python installation is required if you use the executable. / *Não é necessário instalar Python se usar o executável.*
 
-1.  Navigate to the `dist` folder. / *Navegue até a pasta `dist`.*
-2.  Run `Universal Serial Monitor.exe`. / *Execute `Universal Serial Monitor.exe`.*
+1.  Locate `Universal Serial Monitor.exe` in the root folder. / *Localize o `Universal Serial Monitor.exe` na pasta raiz.*
+2.  Run the application. / *Execute a aplicação.*
 
 ### Running from Source / Rodando do Código Fonte
 If you prefer to run or modify the Python script: / *Se preferir rodar ou modificar o script Python:*
 
 ```bash
 # 1. Install dependencies
-pip install pyserial matplotlib
+pip install -r requirements.txt
 
 # 2. Run the script
 python "Universal Serial Monitor.py"
@@ -96,9 +96,10 @@ python "Universal Serial Monitor.py"
 ├── LICENSE                     # GNU GPLv3 License / Licença
 ├── monitor_config.json         # User settings (auto-generated) / Configurações (auto-gerado)
 ├── README.md                   # Project Documentation / Documentação
+├── requirements.txt            # Python Dependencies / Dependências Python
 ├── Universal Serial Monitor.py # Main Source Code / Código Fonte Principal
 ├── Universal Serial Monitor.spec # PyInstaller Build Spec / Especificação de Build
-└── Universal Serial Monitor.exe  # Executable File / Execultavel
+└── Universal Serial Monitor.exe  # Executable File / Executável
 ```
 
 ---
@@ -110,4 +111,3 @@ python "Universal Serial Monitor.py"
 *Este projeto está licenciado sob a **Licença GNU GPLv3**.*
 
 > "Software for a cleaner future."
-```
