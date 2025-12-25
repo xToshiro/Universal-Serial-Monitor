@@ -2,7 +2,7 @@
     "log_folder": "C:\\Users\\jairo\\OneDrive\\Desktop\\Universal-Serial-Monitor",
     "baud_rate": 115200,
     "language": "en",
-    "theme": "light",
+    "theme": "dark",
     "filters": [
         {
             "keyword": "rst:",

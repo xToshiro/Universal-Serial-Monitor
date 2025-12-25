@@ -10,6 +10,7 @@ import multiprocessing
 import os
 import json
 import sys
+ 
 
 # --- Dicionários de Tradução e Temas ---
 LANGUAGES = {
@@ -171,9 +172,17 @@ def plot_worker(filename):
         import matplotlib.pyplot as plt
         import matplotlib.dates as mdates
         
+ 
+ 
+ 
+ 
+ 
+ 
+ 
         times, deltas, avgs, errors = [], [], [], []
 
         if not os.path.exists(filename):
+ 
             return
 
         with open(filename, 'r') as f:
@@ -861,13 +870,27 @@ class SerialMonitorApp:
         self.root.after(1000, self.update_timer_loop)
 
     def launch_plotter(self):
+ 
         if not self.metrics_filename_full or not os.path.exists(self.metrics_filename_full):
             messagebox.showinfo("Aviso", "Nenhum arquivo de métricas disponível.")
             return
         if self.metrics_file:
             self.metrics_file.flush()
-        p = multiprocessing.Process(target=plot_worker, args=(self.metrics_filename_full,))
+        
+        # Correção para Linux: Forçar contexto 'spawn' ao invés de 'fork'
+        ctx = multiprocessing.get_context('spawn')
+        p = ctx.Process(target=plot_worker, args=(self.metrics_filename_full,))
         p.start()
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 if __name__ == "__main__":
     # Necessário para PyInstaller no Windows com multiprocessing
@@ -878,6 +901,9 @@ if __name__ == "__main__":
     except RuntimeError:
         pass
     
+ 
     root = tk.Tk()
     app = SerialMonitorApp(root)
     root.mainloop()
+ 
+

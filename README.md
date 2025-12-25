@@ -36,6 +36,8 @@ Foi desenvolvido para apoiar pesquisas de monitoramento da qualidade do ar e emi
 
 ---
 
+
+
 ## ✨ Key Features / Funcionalidades
 
 | Feature | Description (EN) | Descrição (PT) |
@@ -85,6 +87,12 @@ python "Universal Serial Monitor.py"
 5.  **Analyze:**
     * Click **Charts/Gráficos** to open the real-time analysis window.
     * Check the sidebar for a history of Boot/Panic events.
+
+---
+
+## 🖼️ Screenshot / Captura de Tela
+
+![Interface do Monitor Serial](images/interface.png)
 
 ---
 
